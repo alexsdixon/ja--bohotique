@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body style="margin-top:50px">
+
+<div class="container-fluid" style="color:#337ab7">
+    <h1 th:text="${title}">Default Title</h1>
+</div>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<form class=" container-fluid" method="post" style="max-width:600px;" th:object="${product}">
+    <div class="form-group">
+        <label th:for="product_name">Product Name</label>
+        <input class="form-control" th:field="*{product_name}" />
+        <div th:errors="*{product_name}" class="error"></div>
+    </div>
+    <div class="form-group">
+        <label th:for="category">Category</label>
+        <select th:field="*{category}">
+            <option th:each="productCategory : ${productCategories}"
+                    th:text="${productCategory.name}"
+                    th:value="${playerPosition}"></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label th:for="type">Type</label>
+        <select th:field="*{type}">
+            <option th:each="productType : ${productTypes}"
+                    th:text="${productType.name}"
+                    th:value="${productType}"></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label th:for="size">Size</label>
+        <input class="form-control" th:field="*{size}" />
+    </div>
+    <div class="form-group">
+        <label th:for="price">Price</label>
+        <input class="form-control" th:field="*{price}" />
+    </div>
+    <div class="form-group">
+        <label th:for="firat_image">First Image</label>
+        <input class="form-control" th:field="*{first_image}" />
+    </div>
+    <div class="form-group">
+        <label th:for="second_image">Second Image</label>
+        <input class="form-control" th:field="*{second_image}" />
+    </div>
+
+
+    <input  class="btn btn-primary" type="submit" value="Save" />
+    <a href="/admin/product/" class="btn btn-primary" role="button">Cancel</a>
+</form>
+
+</body>
+</html>

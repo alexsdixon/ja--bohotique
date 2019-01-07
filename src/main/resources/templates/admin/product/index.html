@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body >
+
+<nav th:replace="fragments :: navigation"></nav>
+
+
+<div class="jumbotron text-center" style="background-color:#337ab7; font-family:verdana;">
+    <h1 th:text="${title}">Default Title</h1>
+</div>
+
+<div class="container-fluid">
+    <div class="row content">
+        <div class="col-sm-3 sidenav"  style="background-color:#f1f1f1;">
+            <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205" style="background-color:#f1f1f1;" >
+                <h4>MENU</h4>
+                <li class="active"><a href="/admin/product/">Product Home</a></li>
+                <li><a href="/admin/product/add">Add Product</a> </li>
+                <li><a th:href="@{/admin/product/remove}">Remove Product</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9">
+            <ul style="margin-top:50px" th:each="product : ${products}">
+                <div class="panel-group panel-info col-sm-3" >
+                    <div class="panel-heading"><p th:text="${product.product_name}"></p></div>
+                    <div class="panel-body"><img  src=" th:text=${product.first_image} "/></div>
+                    <div class="panel-footer" style="text-align:center;color:#337ab7"><p th:text="${product.price}"></p></div>
+                </div>
+            </ul>
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>
